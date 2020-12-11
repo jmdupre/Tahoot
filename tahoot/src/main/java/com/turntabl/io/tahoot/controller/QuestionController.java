@@ -39,17 +39,17 @@ public class QuestionController {
         return response;
     }
 
-    @RequestMapping(value = "/save", method = RequestMethod.POST, produces =MediaType.APPLICATION_JSON_VALUE,headers="Accept=application/json,application/xml")
-    public @ResponseBody JsonRecord setCurrentDataList(@RequestBody Questions questions) {
-        try {
-
-            int id=repository.save(questions);
-
-        } catch (Exception e) {
-
-            return new JsonRecord(false,e.getMessage());
-
-        }
-        return new JsonRecord(true,"Successful",questions);
-    }
+//    @RequestMapping(value = "/save", method = RequestMethod.POST, produces =MediaType.APPLICATION_JSON_VALUE,headers="Accept=application/json,application/xml")
+//    public @ResponseBody JsonRecord setCurrentDataList(@RequestBody Questions questions) {
+//        try {
+//
+//            int id=repository.save(questions);
+//
+//        } catch (Exception e) {
+//
+//            return new JsonRecord(false,e.getMessage());
+//
+//        }
+//        return new JsonRecord(true,"Successful",questions);
+//    }
 }

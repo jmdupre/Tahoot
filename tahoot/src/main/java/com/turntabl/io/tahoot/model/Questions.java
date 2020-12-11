@@ -1,5 +1,6 @@
 package com.turntabl.io.tahoot.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.annotations.CreationTimestamp;
 //import org.hibernate.mapping.Set;
@@ -34,7 +35,7 @@ public class Questions {
     @OneToMany(cascade={CascadeType.ALL})
     @Fetch(FetchMode.JOIN)
     @JoinColumn(name="question_id", referencedColumnName="question_id")
-    private Set<Answers> answers;
+    private List<Answers> answers;
 
 
 
@@ -75,5 +76,15 @@ public class Questions {
                 ", question_body='" + question_body + '\'' +
                 ", timestamp=" + timestamp +
                 '}';
+    }
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "question")
+    @JsonManagedReference
+    public List<Answers> getAnswer() {
+        return answers;
+    }
+
+    public void setAnswer(List<Answers> answer) {
+        this.answers = answer;
     }
 }

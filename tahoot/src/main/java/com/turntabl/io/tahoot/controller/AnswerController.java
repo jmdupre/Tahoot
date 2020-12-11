@@ -15,8 +15,12 @@ public class AnswerController {
     @Autowired
     AnswersRepository answersRepository;
 
+
         @PostMapping("/create_answer")
     public String questions(@RequestBody Answers answers){
+            System.out.println("id: "+ answers.getAnswer_id());
+            System.out.println("body: "+ answers.getAnswer_body());
+           
         answersRepository.save(answers);
         return "Answers saved";
     }

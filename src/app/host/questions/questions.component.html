@@ -35,8 +35,10 @@
                             <div>{{question.points}} pts</div>
                         </div>
                         <!-- question image -->
-                        <div class="question-image">
-                            <button id="image-upload" mat-raised-button>Upload Image</button>
+                        <div class="question-image" [(ngModel)]="question.image">
+                            <input type="file" id="image-upload" name="image" mat-raised-button value="Upload Image">
+                            <input [(ngModel)]="question.image" type="file" id="image-upload" name="image"/>
+                            <button type="file" id="image-upload" name="image" mat-raised-button value="Upload Image" color="primary">Upload Image</button>
                         </div>
                     </div>
                     <div class="options">
@@ -54,12 +56,21 @@
         </mat-tab-group>
                 
         <div class="buttons">
-            <button mat-raised-button matStepperPrevious class="button-back button-icons fas fa-arrow-left" color="primary"></button>
-            <button mat-raised-button (click)="removeQuestion(i)" class="button-forward button-icons fas fa-trash" color="warn"></button>
+            <button mat-raised-button matStepperPrevious class="button-back button-icons" color="primary">
+                <i class="fas fa-long-arrow-alt-left fa-2x"></i>
+            </button>
+
+            <button mat-raised-button (click)="removeQuestion(i)" class="button-forward button-icons" color="warn">
+                <i class="fas fa-trash fa-lg"></i>
+            </button>
+
             <button mat-raised-button (click)="Done()" aria-label="Show an example snack-bar" color="dark">Done</button>
-            <button mat-raised-button matStepperNext class="next-button button-icons fas fa-arrow-right" color="primary"></button>
+            
+            <button mat-raised-button matStepperNext class="next-button button-icons" color="primary">
+                <i class="fas fa-long-arrow-alt-right fa-2x"></i>
+            </button>
         </div>
-    </mat-step>
+    </mat-step> 
 
 </mat-horizontal-stepper>
 

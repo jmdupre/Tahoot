@@ -3,4 +3,5 @@ export class Question{
     points = 500;
     timer = 0;
     answer: any[] = [];
+    image: any;
   }

@@ -73,6 +73,7 @@ export class QuestionsComponent implements OnInit {
   quiz: Quiz = new Quiz();
 
   questions: any[] = [];
+  image: any;
 
   currentEditQuestion: any;
   @ViewChild('stepper') stepper: any;
@@ -154,6 +155,9 @@ export class QuestionsComponent implements OnInit {
 
     // Host data from Database
     this.host = this.hostDataService.getHostData();
+
+    //Uploading an image
+    this.image = this.question.image;
 
     // pushing question into questions array
     this.questions.push(this.question);

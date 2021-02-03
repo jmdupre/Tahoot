@@ -46,6 +46,7 @@
                             <mat-form-field class="answers" appearance="outline">
                                 <input matInput [(ngModel)]="answer.answer_body" type="text" name="answer{{j + 1}}_{{i}}" id="answers" placeholder="Answer {{j + 1}}" required>
                             </mat-form-field>
+                        
                             <mat-radio-button color="primary" (click)="Answer(j)" name="validAnswer" class="radio-button" [(ngModel)]="answer.is_correct"></mat-radio-button>
                         </div>
                     </div>

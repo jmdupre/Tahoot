@@ -156,7 +156,7 @@ export class QuestionsComponent implements OnInit {
     // Host data from Database
     this.host = this.hostDataService.getHostData();
 
-    // Uploading an image
+    //Uploading an image
     this.image = this.question.image;
 
     // pushing question into questions array

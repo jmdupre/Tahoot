@@ -13,6 +13,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import com.cloudinary.Cloudinary;
 
 @Entity
 @Table(name = "question")
@@ -36,7 +37,9 @@ public class Questions implements Serializable {
 
     @JsonProperty("image")
     @Column(name = "image")
-    private byte[] image;
+//    private byte[] image;
+    private String image;
+
 
     @Column(name = "file_name")
     @JsonProperty("file_name")
@@ -60,8 +63,10 @@ public class Questions implements Serializable {
     @JoinColumn(name="question_id", referencedColumnName="question_id")
     private List<Answers> answers;
 
-
-
+//    {"timestamp":"2021-01-22T12:40:19.070+00:00","answer":[{"answer_id":5,"answer_body":"Tiger",
+//    "is_correct":true},{"answer_id":6,"answer_body":"Edinam","is_correct":false}],"question_id":4,
+//    "question_body":"Which of the following is an Animal?",
+//    "points":100,"timer":30,"image":"image.jpg","file_name":"image","file_type":"string"}
     public Questions() {
     }
 
@@ -107,11 +112,11 @@ public class Questions implements Serializable {
         this.timer = time;
     }
 
-    public byte[] getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(byte[] image) {
+    public void setImage(String image) {
         this.image = image;
     }
 

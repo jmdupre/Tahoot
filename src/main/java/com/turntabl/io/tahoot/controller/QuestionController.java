@@ -1,6 +1,9 @@
 package com.turntabl.io.tahoot.controller;
 
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.turntabl.io.tahoot.model.Questions;
 import com.turntabl.io.tahoot.repository.QuestionsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +13,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,8 +31,28 @@ public class QuestionController {
     QuestionsRepository repository;
 
     @PostMapping("/create")
-    public String questions(@RequestBody Questions questions){
-        repository.save(questions);
+    public String questions(@RequestParam(value = "file", required = false) MultipartFile file, @RequestParam("question") String q){
+        System.out.println();
+        ObjectMapper mapper = new ObjectMapper();
+        
+        Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(
+                "cloud_name", System.getenv("CLOUD_NAME"),
+                "api_key", System.getenv("API_KEY"),
+                "api_secret", System.getenv("API_SECRET")));
+        
+        try {
+            Questions question = mapper.readValue(q, Questions.class);
+            if(file != null) {
+                Map uploadResult = cloudinary.uploader().upload(file.getBytes(), ObjectUtils.emptyMap());
+//            System.out.println(uploadResult.get("secure_url"));
+                question.setImage((String) uploadResult.get("secure_url"));
+            }
+            repository.save(question);
+
+//            return (String) ;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return "Questions saved";
     }
 

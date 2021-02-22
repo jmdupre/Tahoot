@@ -14,17 +14,12 @@ public class UploadImageService implements UploadImageInterface {
     @Override
     public Questions uploadToDatabase(MultipartFile file) {
 
-        try{
-            Questions questions = new Questions();
-            questions.setImage(file.getBytes());
-            questions.setFile_name(file.getOriginalFilename());
-            questions.setFile_type(file.getContentType());
-            Questions newQuestion = questionsRepository.save(questions);
-            return newQuestion;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
+        Questions questions = new Questions();
+//            questions.setImage(file.getBytes());
+        questions.setFile_name(file.getOriginalFilename());
+        questions.setFile_type(file.getContentType());
+        Questions newQuestion = questionsRepository.save(questions);
+        return newQuestion;
     }
 
     @Override

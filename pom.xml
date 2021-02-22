@@ -81,6 +81,21 @@
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.cloudinary</groupId>
+            <artifactId>cloudinary-http44</artifactId>
+            <version>1.28.1</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>2.9.2</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>2.9.2</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -89,11 +104,16 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-                  <plugin>
-                 <groupId>com.heroku.sdk</groupId>
-                 <artifactId>heroku-maven-plugin</artifactId>
+<!--                  <plugin>-->
+<!--                 <groupId>com.heroku.sdk</groupId>-->
+<!--                 <artifactId>heroku-maven-plugin</artifactId>-->
+<!--            </plugin>-->
+            <plugin>
+                <groupId>com.heroku.sdk</groupId>
+                <artifactId>heroku-maven-plugin</artifactId>
             </plugin>
         </plugins>
+
     </build>
 
 </project>

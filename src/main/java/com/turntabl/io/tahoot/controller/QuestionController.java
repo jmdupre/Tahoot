@@ -36,6 +36,9 @@ public class QuestionController {
         ObjectMapper mapper = new ObjectMapper();
         
         Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(
+//                "cloud_name", System.getenv("CLOUD_NAME"),
+//                "api_key", System.getenv("API_KEY"),
+//                "api_secret", System.getenv("API_SECRET")));
                 "cloud_name", System.getenv("CLOUD_NAME"),
                 "api_key", System.getenv("API_KEY"),
                 "api_secret", System.getenv("API_SECRET")));

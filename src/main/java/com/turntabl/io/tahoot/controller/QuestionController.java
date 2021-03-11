@@ -39,15 +39,16 @@ public class QuestionController {
 //                "cloud_name", System.getenv("CLOUD_NAME"),
 //                "api_key", System.getenv("API_KEY"),
 //                "api_secret", System.getenv("API_SECRET")));
-                "cloud_name", System.getenv("CLOUD_NAME"),
-                "api_key", System.getenv("API_KEY"),
-                "api_secret", System.getenv("API_SECRET")));
+                "cloud_name", "turntabl",
+                "api_key", "786764898994284",
+                "api_secret", "tLSFd4GlCjyRNyms2ISLEM48-aY"));
         
         try {
             Questions question = mapper.readValue(q, Questions.class);
             if(file != null) {
                 Map uploadResult = cloudinary.uploader().upload(file.getBytes(), ObjectUtils.emptyMap());
 //            System.out.println(uploadResult.get("secure_url"));
+
                 question.setImage((String) uploadResult.get("secure_url"));
             }
             repository.save(question);
@@ -130,18 +131,4 @@ public class QuestionController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
-//    @RequestMapping(value = "/save", method = RequestMethod.POST, produces =MediaType.APPLICATION_JSON_VALUE,headers="Accept=application/json,application/xml")
-//    public @ResponseBody JsonRecord setCurrentDataList(@RequestBody Questions questions) {
-//        try {
-//
-//            int id=repository.save(questions);
-//
-//        } catch (Exception e) {
-//
-//            return new JsonRecord(false,e.getMessage());
-//
-//        }
-//        return new JsonRecord(true,"Successful",questions);
-//    }
 }

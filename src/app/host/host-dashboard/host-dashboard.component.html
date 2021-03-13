@@ -35,7 +35,8 @@
 
           <!-- side bar main content -->
           <mat-sidenav-content class="main-content" [class.main-content-closed] = "slideCheck">
-           
+            <app-host-home *ngIf="homePage" [name] = "host.host_name"></app-host-home>
+            <!-- <app-quiz-creation></app-quiz-creation> -->
             <mat-card *ngIf="questioncontenthide" class="quiz-number-card" [class.side-nav-opened] = "slideCheck">
               <span id="quiz-number">
                 Quiz Number
@@ -50,8 +51,6 @@
             <app-questions *ngIf="questioncontentshow"></app-questions>
 
             <mat-spinner class="spinner" diameter="50"  *ngIf="spinnerDisplay"></mat-spinner>
-
-
 
             <div *ngIf="quiz_cards">
               <mat-card class="quiz-card" *ngFor="let data of host_data; let i = index">

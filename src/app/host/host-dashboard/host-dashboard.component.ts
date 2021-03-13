@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { WebsocketService } from 'src/app/services/websocket/websocket.service';
@@ -30,7 +30,7 @@ export class HostDashboardComponent implements OnInit {
 
   currentQuiz: any[] = [];
 
-  host: Host = new Host();
+  @Input() public host: Host = new Host();
 
   quiz_number = 0;
 
@@ -44,6 +44,7 @@ export class HostDashboardComponent implements OnInit {
     questioncontentshow = false;
     questioncontenthide = false;
     quiz_cards = false;
+    homePage = true;
 
   ngOnInit(): void {
     this.authService.isNotLogin();
@@ -69,6 +70,7 @@ export class HostDashboardComponent implements OnInit {
     this.quiz_cards = false;
     this.viewQuestion = false;
     this.spinnerDisplay = false;
+    this.homePage = false;
     }
 
 
@@ -77,6 +79,7 @@ export class HostDashboardComponent implements OnInit {
       this.questioncontenthide = false;
       this.quiz_cards = false;
       this.viewQuestion = false;
+      this.homePage = true;
   }
 
   // Showing Quiz Cards
@@ -87,6 +90,7 @@ export class HostDashboardComponent implements OnInit {
     this.viewQuestion = false;
     this.hostDataFromDatabase();
     this.spinnerDisplay = true;
+    this.homePage = false;
   }
 
   // Begin the quiz
@@ -125,6 +129,8 @@ export class HostDashboardComponent implements OnInit {
     hostDataFromDatabase(){
       this.host_data.length = 0;
       this.requestService.getRequest('/gethost').subscribe((data: any) => {
+        console.log('get cards', data);
+        
         data.forEach((element: any) => {
           if (element.quiz.length !== 0 && this.host.host_name !== '' && element.host_name == this.host.host_name){
 

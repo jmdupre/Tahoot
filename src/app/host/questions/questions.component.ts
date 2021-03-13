@@ -8,6 +8,7 @@ import { HostDataService } from 'src/app/services/host-data/host-data.service';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { RequetsService } from 'src/app/services/http-requests/requets.service';
 import { HostDashboardComponent } from '../host-dashboard/host-dashboard.component';
+import { HttpClient } from '@angular/common/http';
 
 
 
@@ -27,10 +28,10 @@ export class Quiz {
   styleUrls: ['./questions.component.css'],
 })
 
-
 export class QuestionsComponent implements OnInit {
-
-  constructor(private hostNameService: HostNameService,
+ 
+  constructor(private http: HttpClient,
+              private hostNameService: HostNameService,
               private hostDataService: HostDataService,
               private _snackBar: MatSnackBar,
               private requestService: RequetsService,
@@ -74,7 +75,8 @@ export class QuestionsComponent implements OnInit {
 
   questions: any[] = [];
   image: any;
-
+  imageUrl = "https://cdn.blocktoro.com/wp-content/uploads/2020/06/Money-Heist-Season-5-Plot-Spoilers-and-Storyline-.jpg";
+  
   currentEditQuestion: any;
   @ViewChild('stepper') stepper: any;
 
@@ -86,8 +88,6 @@ export class QuestionsComponent implements OnInit {
     this.host.host_name = this.hostNameService.getHostName();
 
   }
-
-
 
   createQuestion(){
     // creating a new question and adding new answers
@@ -105,7 +105,7 @@ export class QuestionsComponent implements OnInit {
     this.host = this.hostDataService.getHostData();
 
     // pushing question into questions array
-    this.questions.push(this.question);
+    this.questions.push(this.question);    
 
     // Looping through Host data for quiz name and quiz ID
     this.host.quiz.forEach((quiz: any) => {
@@ -119,59 +119,32 @@ export class QuestionsComponent implements OnInit {
     // Making a put request
     this.requestService.putRequest('quiz', this.quiz.quiz_id, this.quiz).subscribe();
     this.stepper.selectedIndex = this.questions.length - 1;
+    
+    const formData = new FormData();
+    formData.append('question', JSON.stringify(this.questions[this.questions.length-2]));
+
+     // Uploading an image
+    formData.append('file', this.image);
+
+    // To reset image to default
+    this.imageUrl = "https://cdn.blocktoro.com/wp-content/uploads/2020/06/Money-Heist-Season-5-Plot-Spoilers-and-Storyline-.jpg";
+    this.image = "";
   }
 
   nextQuestion(){
     this.stepper.selectedIndex = this.questions.length - 1;
   }
 
-
   removeQuestion(index: any){
     index = this.questions.indexOf(index, 0);
     this.questions.splice(index, 1);
     this.requestService.getQuiz('quiz', this.quiz.quiz_id).subscribe((quiz: any) => {
       quiz.questions[index];
-      // this.requestService.deleteRequest("question", quiz.questions[index].question_id).subscribe(() => {
-      //   console.log("Message Deleted!");
-      // });
     });
 
   }
   Done(){
-    // creating a new question and adding new answers
-    this.quiz_cards = true;
-    this.questioncontentshow = false;
-    this.questioncontenthide = true;
-
-    this.question = new Question();
-    this.answer1 = new Answer();
-    this.answer2 = new Answer();
-    this.answer3 = new Answer();
-    this.answer4 = new Answer();
-    this.question.answer.push(this.answer1, this.answer2, this.answer3, this.answer4);
-
-    // resetting quiz.questions array
-    this.quiz.questions.length = 0;
-
-    // Host data from Database
-    this.host = this.hostDataService.getHostData();
-
-    // Uploading an image
-    this.image = this.question.image;
-
-    // pushing question into questions array
-    this.questions.push(this.question);
-
-    // Looping through Host data for quiz name and quiz ID
-    this.host.quiz.forEach((quiz: any) => {
-
-      this.quiz.quiz_name = quiz.quiz_name;
-      this.quiz.questions.push(this.questions[this.questions.length - 2]);
-      this.quiz.quiz_id = quiz.quiz_id;
-    });
-
-    // Making a put request
-    this.requestService.putRequest('quiz', this.quiz.quiz_id, this.quiz).subscribe();
+    this.createQuestion();
     this._snackBar.open('Quiz Created Successfully!', 'Close', {
       duration: 10000,
       horizontalPosition: this.horizontalPosition,
@@ -180,7 +153,6 @@ export class QuestionsComponent implements OnInit {
     });
 
     this.hostDashboardComponent.showQuizCards();
-
   }
 
   Answer(index: number){
@@ -193,8 +165,19 @@ export class QuestionsComponent implements OnInit {
       } else {
         question.answer[index].is_correct = false;
       }
-
-      console.log(question.answer[index]);
     });
   }
+
+  onFileSelected(event: any) {
+    if(event.target.files.length > 0){
+      this.image = event.target.files[0];
+
+      var reader = new FileReader();
+      reader.readAsDataURL(this.image)
+      reader.onload=(readerEvent: any)=>{
+        this.imageUrl = readerEvent.target.result;
+      }
+    }
+  }
+  
 }

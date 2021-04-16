@@ -44,10 +44,6 @@
 	width: 250px;
 }
 
-.question-image{
-	width: 20%;
-}
-
 .options{
 	display: grid; 
 	grid-template-columns: repeat(2, 1fr);
@@ -100,4 +96,22 @@
 .mat-raised-button.mat-dark {
   color: #fff;
   background-color: #092834;
+}
+
+.upload-button {
+	text-align: center;
+	margin: 0 20px;
+}
+.question-image{
+	height:100px; 
+	width:160px;
+}
+
+.file-upload-container {
+    overflow: hidden;
+	align-content: center;
+}
+
+.file-upload-container:hover {
+    cursor: pointer;
 }

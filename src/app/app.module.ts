@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -9,7 +9,7 @@ import { GoogleLoginProvider } from 'angularx-social-login';
 import { HostDashboardComponent } from './host/host-dashboard/host-dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { QuestionsComponent } from './host/questions/questions.component';
+import { QuestionsComponent } from './host/quiz-creation/questions/questions.component';
 import { QuizComponent } from './host/quiz/quiz.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -30,17 +30,23 @@ import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatMenuModule } from '@angular/material/menu';
-import { MatProgressSpinnerModule, MatSpinner } from '@angular/material/progress-spinner';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatStepperModule } from '@angular/material/stepper';
-import {  MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSortModule } from '@angular/material/sort';
 import { PodiumComponent } from './podium/podium.component';
 import { EditQuestionsComponent } from './host/edit-questions/edit-questions.component';
 import { ScoreboardComponent } from './scoreboard/scoreboard.component';
-
-
+import { QuizCreationComponent } from './host/quiz-creation/quiz-creation.component';
+import { NavigationComponent } from './host/navigation/navigation.component';
+import { ToolbarComponent } from './host/toolbar/toolbar.component';
+import { NewQuestionComponent } from './host/quiz-creation/new-question/new-question.component';
+import { QuizOptionComponent } from './host/quiz-creation/quiz-option/quiz-option.component';
+import { ItemTogglerComponent } from './host/quiz-creation/item-toggler/item-toggler.component';
+import { NewOptionComponent } from './host/quiz-creation/new-option/new-option.component';
+import { HostHomeComponent } from './host/host-home/host-home.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +59,15 @@ import { ScoreboardComponent } from './scoreboard/scoreboard.component';
     HostGameplayComponent,
     PodiumComponent,
     EditQuestionsComponent,
-    ScoreboardComponent
+    ScoreboardComponent,
+    QuizCreationComponent,
+    NavigationComponent,
+    ToolbarComponent,
+    NewQuestionComponent,
+    QuizOptionComponent,
+    ItemTogglerComponent,
+    NewOptionComponent,
+    HostHomeComponent
   ],
   imports: [
     BrowserModule,
@@ -85,7 +99,7 @@ import { ScoreboardComponent } from './scoreboard/scoreboard.component';
     MatStepperModule,
     MatSnackBarModule,
     MatExpansionModule,
-    MatSortModule
+    MatSortModule,
   ],
   providers: [{
     provide: 'SocialAuthServiceConfig',
@@ -100,6 +114,7 @@ import { ScoreboardComponent } from './scoreboard/scoreboard.component';
         }]
     } as SocialAuthServiceConfig,
   }],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

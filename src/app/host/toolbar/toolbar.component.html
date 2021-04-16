@@ -1,0 +1,29 @@
+<div class="toolbar px-2 border-bottom">
+  <ul class="nav nav-pills">
+    <li class="toolbar-item">
+      <button (click)="getCurrentPage('home')" class="toolbar-button nav-link" mat-button data-bs-toggle="pill">
+        <div class="toolbar-button-icon"><i class="fas fa-home"></i></div>
+        <small class="toolbar-button-label">Home</small>
+      </button>
+    </li>
+    <li class="toolbar-item">
+      <button (click)="getCurrentPage('create')" class="toolbar-button nav-link px-0" mat-button data-bs-toggle="pill">
+        <div class="toolbar-button-icon"><i class="fas fa-plus"></i></div>
+        <small class="toolbar-button-label">Create Quiz</small>
+      </button>
+    </li>
+    <li class="toolbar-item">
+      <button (click)="getCurrentPage('manage')" class="toolbar-button nav-link" mat-button data-bs-toggle="pill">
+        <div class="toolbar-button-icon"><i class="fas fa-tasks"></i></div>
+        <small class="toolbar-button-label">Manage Quizzes</small>
+      </button>
+    </li>
+  </ul>
+</div>
+
+
+
+
+<!-- (click)="questionContentShow()" -->
+<!-- (click)="questionContentHide()" -->
+<!-- (click)="showQuizCards()" -->

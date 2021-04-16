@@ -1,0 +1,163 @@
+<div class="question-container mb-2">
+  <div class="d-flex justify-content-between">
+    <div class="bg-secondary text-light p-1 question-number">Question {{ questionNumber }}</div>
+    <div><button (click)="handleRemoveQuestion()" class="text-secondary" style="outline: none; border: none;">
+        <mat-icon>delete</mat-icon>
+      </button></div>
+  </div>
+  <app-new-question *ngIf="question" [questionId]="question.id" [questionType]="question.type"></app-new-question>
+  <div class="d-flex">
+    <!-- timer -->
+    <div class="my-3 me-5 w-25">
+      <div class="timer">
+        <mat-form-field appearance="outline">
+          <mat-label>Timer</mat-label>
+          <mat-select [(ngModel)]="selectedTimerValue" (ngModelChange)="onTimerValueChange($event)">
+            <mat-option *ngFor="let value of timerValues" [value]="value">{{value}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <!-- points -->
+    <div class="w-75">
+      <div class="w-100 text-center">500 pts</div>
+      <div class="d-flex align-items-center">
+        <div class="me-3">Assign Points</div>
+        <mat-slider [(ngModel)]="questionPoints" (ngModelChange)="onQuestionPointsValueChange($event)" color="primary"
+          class="mat-slider w-100" type="range" step="500" min="500" max="2000" name="points">
+        </mat-slider>
+      </div>
+    </div>
+  </div>
+
+  <!-- options -->
+  <app-quiz-option *ngIf="question" [questionId]="question.id" [questionOptions]="question.options"></app-quiz-option>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <mat-horizontal-stepper linear #stepper>
+  <mat-step *ngFor="let stepItem of stepTracker; let i = index" [editable]="isEditable">
+    <app-new-question [id]="stepItem" (createNewQuestionStepper)="handleNewQuestion($event)">
+      <ng-template matStepLabel>Question</ng-template>
+    </app-new-question>
+  </mat-step>
+</mat-horizontal-stepper> -->
+
+
+
+
+
+
+
+
+<!-- <mat-horizontal-stepper linear #stepper>
+    <mat-step [editable]="isEditable">
+        <ng-template matStepLabel>Quiz Name</ng-template>
+        <app-quiz></app-quiz>
+    </mat-step>
+
+      <mat-step [editable]="isEditable" *ngFor="let question of questions; let i = index">
+        <mat-tab-group dynamicHeight>
+            <ng-template matStepLabel>
+                Quiz Question {{i + 1 }}
+              </ng-template>
+            <mat-tab label="Multiple Choice Question">
+                <form class="form-container">
+                    <div class="question_field">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Click here to start typing your question</mat-label>
+                            <input matInput name="question_body_{{i}}" [(ngModel)]="question.question_body" type="text" id="question-input" required/>
+                        </mat-form-field>
+                    </div> -->
+<!-- time -->
+<!-- <div class="timer-slider-container">
+                        <div class="timer">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Timer</mat-label>
+                                <mat-select [(ngModel)]="question.timer" name="timer_{{i}}">
+                                    <mat-option *ngFor="let timer of timers" [value]="timer.value">
+                                    {{timer.value}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div> -->
+<!-- slider -->
+<!-- <div class="slider"> -->
+<!-- <div><mat-slider color="primary" class="mat-slider" [(ngModel)]="question.points" type="range" step="500" min="500" max="2000" name="points_{{i}}"></mat-slider></div>
+                            <div>{{question.points}} pts</div>
+                        </div> -->
+<!-- question image -->
+<!-- <div class="file-upload-container">
+                            <div>
+                                <img [src]="imageUrl" id="img-preview" class="question-image" />
+                            </div>
+                        <div [(ngModel)]="question.image">
+                            <input style="display: none;" [(ngModel)]="question.image" type="file" (change)="onFileSelected($event)" #fileInput id="image-upload" name="image"/>
+                            <button class="upload-button" name="image" mat-raised-button (click)="fileInput.click()" color="primary">Upload Image</button>
+                        </div> -->
+<!-- </div>
+                    </div>
+                    <div class="options">
+                        <div *ngFor="let answer of question.answer; let j = index" class="choice">
+                            <mat-form-field class="answers" appearance="outline">
+                                <input matInput [(ngModel)]="answer.answer_body" type="text" name="answer{{j + 1}}_{{i}}" id="answers" placeholder="Answer {{j + 1}}" required>
+                            </mat-form-field>
+
+                            <mat-radio-button color="primary" (click)="Answer(j)" name="validAnswer" class="radio-button" [(ngModel)]="answer.is_correct"></mat-radio-button>
+                        </div>
+                    </div>
+                    <button class="add-question-btn" mat-raised-button (click)="createQuestion()" color="primary">Add Question</button>
+                </form>
+            </mat-tab>
+        </mat-tab-group>
+
+        <!-- <div class="buttons">
+            <button mat-raised-button matStepperPrevious class="button-back button-icons" color="primary">
+                <i class="fas fa-long-arrow-alt-left fa-2x"></i>
+            </button>
+
+            <button mat-raised-button (click)="removeQuestion(i)" class="button-forward button-icons" color="warn">
+                <i class="fas fa-trash fa-lg"></i>
+            </button>
+
+            <button mat-raised-button (click)="Done()" aria-label="Show an example snack-bar" color="dark">Done</button>
+
+            <button mat-raised-button matStepperNext class="next-button button-icons" color="primary">
+                <i class="fas fa-long-arrow-alt-right fa-2x"></i>
+            </button>
+        </div>
+    </mat-step>
+
+</mat-horizontal-stepper> -->

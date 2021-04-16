@@ -1,0 +1,17 @@
+.tahoot {
+  font-family: 'Jockey One';
+  font-size: 2.2rem;
+  color: #4063d8;
+}
+
+.user-profile {
+  border: 1px solid #4063d8;
+  background-color: white;
+  border-radius: 50%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  width: 40px;
+  color: #4063d8;
+}

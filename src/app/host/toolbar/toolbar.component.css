@@ -1,0 +1,31 @@
+.toolbar-item {
+  width: 100px;
+  background-color: #f1f1f1;
+  border-right: 1px solid #e6e6e6;
+}
+
+.toolbar-button {
+  align-items: center;
+  width: 100%;
+  border: none;
+  outline: none;
+  border-radius: 0% !important;
+  color: #3c3c3d;
+}
+
+.toolbar-button:hover {
+  background-color: #eff3fd;
+}
+
+.toolbar-button-label {
+  font-size: 0.7rem;
+}
+
+/* overrides */
+.nav-link {
+  padding: 0.2rem 0.2rem !important;
+}
+
+.mat-button {
+  line-height: 20px !important;
+}

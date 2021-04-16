@@ -1,206 +1,108 @@
-<!-- Layout -->
-<!-- top navigation -->
-<div class="navigation">
-  <app-navigation></app-navigation>
-  <app-toolbar (toggleCurrentPage)="toggleCurrentPage($event)"></app-toolbar>
-</div>
-
-
-<!-- main section -->
-<div [ngSwitch]="currentPage" class="mx-2 mt-4">
-  <div *ngSwitchCase="'home'">
-   <app-host-home [name] = "host.host_name"></app-host-home>
-  </div>
-  <div *ngSwitchCase="'create'">
-    <app-quiz-creation></app-quiz-creation>
-  </div>
-  <div *ngSwitchCase="'manage'">
-    Manage Quizzes
-  </div>
-  <div *ngSwitchDefault>
-    <app-host-home [name] = "host.host_name"></app-host-home>
-  </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-<!-- main-section -->
-<!-- <mat-drawer-container class="section-container" autosize> -->
-<!-- side havigation -->
-<!-- <mat-drawer #sidenav class="host-side-navigation" mode="side">
-    <mat-sidenav class="side-nav" #snav mode="side">
-      <mat-list>
-        <mat-list-item (click)="questionContentHide()" class="side-nav-menu">
-          Home
-        </mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item (click)="questionContentShow()" class="side-nav-menu">
-          Create Quiz
-        </mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item (click)="showQuizCards()" class="side-nav-menu">
-          Manage Quizzes
-        </mat-list-item>
-        <mat-divider></mat-divider>
-      </mat-list>
-    </mat-sidenav>
-  </mat-drawer> -->
-
-<!-- <div class="host-main-content">
-    <button type="button" mat-button (click)="sidenav.toggle()">
-      Toggle sidenav
-    </button>
-  </div>
-</mat-drawer-container> -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <mat-toolbar class="navigation-bar bg-danger">
-  <button type="button" mat-icon-button class="menu-icon" (click)="snav.toggle()" (click)="slideTrigger()">
-    <mat-icon>menu</mat-icon>
-  </button>
-  <span class="tahoot">Tahoot</span>
-  <span class="spacer"></span>
-  <button class="user-profile" [matMenuTriggerFor]="belowMenu">
-    <i class="fas fa-user fa-1g"></i>
-  </button>
-  <mat-menu #belowMenu="matMenu" yPosition="below">
-    <mat-list>
-      <mat-list-item>{{host.host_name}}</mat-list-item>
-    </mat-list>
-    <button (click)="signOut()" mat-menu-item>Logout</button>
-  </mat-menu>
-</mat-toolbar> -->
-
-
-
-<!-- <mat-sidenav-container class="example-sidenav-container"> -->
-<!-- <mat-sidenav class="side-nav" #snav mode="side">
-    <mat-list>
-      <mat-list-item (click)="questionContentHide()" class="side-nav-menu">
-        Home
-      </mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item (click)="questionContentShow()" class="side-nav-menu">
-        Create Quiz
-      </mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item (click)="showQuizCards()" class="side-nav-menu">
-        Manage Quizzes
-      </mat-list-item>
-      <mat-divider></mat-divider>
-    </mat-list>
-  </mat-sidenav> -->
-
-<!-- side bar main content -->
-<!-- <mat-sidenav-content class="main-content" [class.main-content-closed]="slideCheck">
-    <app-quiz-creation></app-quiz-creation>
-    <mat-card *ngIf="questioncontenthide" class="quiz-number-card" [class.side-nav-opened]="slideCheck">
-      <span id="quiz-number">
-        Quiz Number
-      </span>
-
-      <span id="quiz-number-value">
-        {{quiz_number}}
-      </span>
-
-    </mat-card>
-
-    <app-questions *ngIf="questioncontentshow"></app-questions>
-
-    <mat-spinner class="spinner" diameter="50" *ngIf="spinnerDisplay"></mat-spinner> -->
-
-
-<!--
-    <div *ngIf="quiz_cards">
-      <mat-card class="quiz-card" *ngFor="let data of host_data; let i = index">
-        <mat-card-content *ngFor="let quiz of data.quiz">
-          <span id="quiz_name">{{quiz.quiz_name}}</span>
-          <span id="host_name">{{data.host_name}}</span>
-          <span id="quiz_game_pin">{{quiz.game_pin}}</span>
-        </mat-card-content>
-        <mat-card-actions class="quiz-card-actions">
-          <button class="view-quiz-button" (click)="viewQuizQuestions(i)" matTooltip="View Quiz Questions">
-            <i class="far fa-eye fa-1g"></i>
-          </button>
-          <button class="start-quiz-button" (click)="startQuiz(i)" matTooltip="Start Quiz">
-            <i class="fas fa-play fa-1g"></i>
-          </button>
-          <button class="delete-quiz-button" matTooltip="Delete Quiz" (click)="deleteQuiz(i)">
-            <i class="fa fa-trash" aria-hidden="true" fa-1g></i>
-          </button>
-        </mat-card-actions>
-      </mat-card>
-    </div> -->
-
-<!-- <mat-accordion *ngIf="viewQuestion" class="example-headers-align" multi>
-
-      <mat-expansion-panel (opened)="panelOpenState" *ngFor="let question of viewQuestions, let i = index ">
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-
-            {{i + 1}}: {{question.question_body}}
-          </mat-panel-title>
-
-          <mat-panel-description>
-
-            <button class="edit-button" matTooltip="Edit Question" (click)="editQuestion(i)">
-              <i class="fas fa-edit fa-1g"></i>
-            </button>
-
-            <button class="delete-button" matTooltip="Delete Question">
-              <i class="fas fa-trash fa-1g"></i>
-            </button>
-          </mat-panel-description>
-
-        </mat-expansion-panel-header>
-
-        <p *ngFor="let answer of question.answer, let j = index">
-          Answer {{j + 1}}: {{answer.answer_body}}
-        </p>
-      </mat-expansion-panel>
-
-    </mat-accordion>
-
-  </mat-sidenav-content>
-</mat-sidenav-container> -->
+<mat-toolbar class="navigation-bar">
+      <button type="button" mat-icon-button class="menu-icon" (click)="snav.toggle()" (click)="slideTrigger()">
+            <mat-icon>menu</mat-icon>
+      </button>
+      <span id="Tahoot">Tahoot</span>
+      <span class="spacer"></span>
+      <button class="user-profile" [matMenuTriggerFor]="belowMenu">
+            <i class="fas fa-user fa-1g"></i>
+      </button>
+      <mat-menu #belowMenu="matMenu" yPosition="below">
+            <mat-list>
+                  <mat-list-item>{{host.host_name}}</mat-list-item>
+            </mat-list>
+            <button (click)="signOut()" mat-menu-item>Logout</button>
+      </mat-menu>
+</mat-toolbar>
+
+<mat-sidenav-container class="example-sidenav-container">
+          <mat-sidenav class="side-nav" #snav mode = "side">
+            <mat-list>
+              <mat-list-item (click)="questionContentHide()" class="side-nav-menu">
+                Home
+               </mat-list-item>
+               <mat-divider></mat-divider>
+              <mat-list-item (click)="questionContentShow()" class="side-nav-menu">
+                Create Quiz
+              </mat-list-item>
+              <mat-divider></mat-divider>
+               <mat-list-item (click)="showQuizCards()" class="side-nav-menu">
+                 Manage Quizzes
+                </mat-list-item>
+                <mat-divider></mat-divider>
+            </mat-list>            
+</mat-sidenav>
+
+          <!-- side bar main content -->
+          <mat-sidenav-content class="main-content" [class.main-content-closed] = "slideCheck">
+           
+            <mat-card *ngIf="questioncontenthide" class="quiz-number-card" [class.side-nav-opened] = "slideCheck">
+              <span id="quiz-number">
+                Quiz Number
+              </span>
+              
+              <span id="quiz-number-value">
+                {{quiz_number}}
+              </span>
+
+            </mat-card>
+
+            <app-questions *ngIf="questioncontentshow"></app-questions>
+
+            <mat-spinner class="spinner" diameter="50"  *ngIf="spinnerDisplay"></mat-spinner>
+
+
+
+            <div *ngIf="quiz_cards">
+              <mat-card class="quiz-card" *ngFor="let data of host_data; let i = index">
+                <mat-card-content *ngFor="let quiz of data.quiz">
+                  <span id="quiz_name">{{quiz.quiz_name}}</span>
+                  <span id="host_name">{{data.host_name}}</span>
+                  <span id="quiz_game_pin">{{quiz.game_pin}}</span>
+                </mat-card-content>
+                <mat-card-actions class="quiz-card-actions">
+                  <button class="view-quiz-button" (click)="viewQuizQuestions(i)" matTooltip="View Quiz Questions">
+                    <i class="far fa-eye fa-1g"></i>
+                  </button>
+                  <button class="start-quiz-button" (click)="startQuiz(i)" matTooltip="Start Quiz">
+                    <i class="fas fa-play fa-1g"></i>
+                  </button>
+                  <button class="delete-quiz-button"  matTooltip="Delete Quiz" (click)="deleteQuiz(i)">
+                    <i class="fa fa-trash" aria-hidden="true" fa-1g ></i>
+                 </button>
+                </mat-card-actions>
+              </mat-card>
+            </div>
+
+          <mat-accordion *ngIf="viewQuestion" class="example-headers-align" multi>
+            
+            <mat-expansion-panel (opened)="panelOpenState"
+                        *ngFor="let question of viewQuestions, let i = index ">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  
+                 {{i + 1}}: {{question.question_body}}
+                </mat-panel-title>
+
+                <mat-panel-description>
+
+                  <button class="edit-button" matTooltip="Edit Question" (click)="editQuestion(i)">
+                    <i class="fas fa-edit fa-1g"></i>
+                  </button>
+
+                  <button class="delete-button" matTooltip="Delete Question">
+                    <i class="fas fa-trash fa-1g"></i>
+                  </button>
+                </mat-panel-description>
+
+                </mat-expansion-panel-header>
+                
+                <p *ngFor="let answer of question.answer, let j = index">
+                 Answer {{j + 1}}: {{answer.answer_body}}
+                </p>
+          </mat-expansion-panel>
+          
+          </mat-accordion>
+
+          </mat-sidenav-content>
+</mat-sidenav-container>

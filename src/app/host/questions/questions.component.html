@@ -35,15 +35,11 @@
                             <div>{{question.points}} pts</div>
                         </div>
                         <!-- question image -->
-                        <div class="file-upload-container">
-                            <div>
-                                <img [src]="imageUrl" id="img-preview" class="question-image" />
-                            </div>
-                        <div [(ngModel)]="question.image">
-                            <input style="display: none;" [(ngModel)]="question.image" type="file" (change)="onFileSelected($event)" #fileInput id="image-upload" name="image"/>
-                            <button class="upload-button" name="image" mat-raised-button (click)="fileInput.click()" color="primary">Upload Image</button>
+                        <div class="question-image" [(ngModel)]="question.image">
+                            <input type="file" id="image-upload" name="image" mat-raised-button value="Upload Image">
+                            <input [(ngModel)]="question.image" type="file" id="image-upload" name="image"/>
+                            <button type="file" id="image-upload" name="image" mat-raised-button value="Upload Image" color="primary">Upload Image</button>
                         </div>
-                    </div>
                     </div>
                     <div class="options">
                         <div *ngFor="let answer of question.answer; let j = index" class="choice">
